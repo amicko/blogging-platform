@@ -1,0 +1,82 @@
+.navigationBox .navBar {
+  height: 4em;
+  background: #8D51DB;
+  background: linear-gradient(#ffffff, #9FC6E4); }
+  .navigationBox .navBar .leftNavList {
+    list-style-type: none;
+    float: left; }
+    .navigationBox .navBar .leftNavList li {
+      display: inline-block;
+      margin: 0 0.2em;
+      text-align: center;
+      font-size: 1.5em; }
+      .navigationBox .navBar .leftNavList li a {
+        text-decoration: none;
+        color: #000000;
+        font-weight: bold; }
+  .navigationBox .navBar .rightNavList {
+    list-style-type: none;
+    float: right; }
+    .navigationBox .navBar .rightNavList li {
+      display: inline-block;
+      margin: 0 0.7em;
+      text-align: center;
+      font-size: 1.5em; }
+      .navigationBox .navBar .rightNavList li a {
+        text-decoration: none;
+        color: #000000;
+        font-weight: bold; }
+
+.pageHeader {
+  text-align: center; }
+
+.form {
+  width: 50em;
+  margin: 0 auto; }
+  .form input {
+    width: 80%;
+    height: 2em;
+    margin: 0.5em; }
+  .form button {
+    height: 3em;
+    width: 10em;
+    float: right;
+    margin-right: 20%; }
+
+.detailLink {
+  width: 65em;
+  display: block;
+  margin: 0 auto;
+  text-decoration: none;
+  color: #000000; }
+  .detailLink .mainPostBox {
+    display: block;
+    clear: both;
+    width: 100%;
+    margin: 2em 0.5em; }
+    .detailLink .mainPostBox .mainTitle {
+      font-size: 1.5em;
+      font-weight: bold; }
+    .detailLink .mainPostBox .mainImage {
+      float: left;
+      height: 5em;
+      width: 5em;
+      margin-right: 0.5em;
+      border-radius: 100%; }
+
+.detailsPostBox {
+  margin: 0 3em; }
+  .detailsPostBox .detailsTitle {
+    font-size: 2em; }
+  .detailsPostBox .imageContainer {
+    margin: 1em 3em; }
+    .detailsPostBox .imageContainer .detailsImage {
+      height: 100%;
+      width: 100%; }
+  .detailsPostBox .detailsDescription {
+    font-size: 1.25em; }
+  .detailsPostBox .detailsAuthor {
+    float: right;
+    font-weight: bold;
+    font-size: 1.25em;
+    margin: 1em; }

@@ -1,0 +1,127 @@
+.navigationBox {
+
+	.navBar{
+		height: 4em;
+		background: #8D51DB;
+  		background: linear-gradient(#ffffff, #9FC6E4);
+
+		.leftNavList {
+			list-style-type: none;
+			float: left;
+			li {
+				display: inline-block;	
+				margin: 0 0.2em;
+				text-align: center;
+				font-size: 1.5em;
+				a {
+					text-decoration: none;
+					color: #000000;
+					font-weight: bold;
+				}
+			}
+		}
+		.rightNavList {
+			list-style-type: none;
+			float: right;
+			li {
+				display: inline-block;	
+				margin: 0 0.7em;
+				text-align: center;
+				font-size: 1.5em;
+				a {
+					text-decoration: none;
+					color: #000000;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+
+.pageHeader {
+	text-align: center;
+}
+
+.form {
+	width: 50em;
+	margin: 0 auto;
+	input {
+		width: 80%;
+		height: 2em;
+		margin: 0.5em;
+	}
+	button {
+		height: 3em;
+		width: 10em;
+		float: right;
+		margin-right: 20%;
+	}
+}
+
+.detailLink {
+	width: 65em;
+	display: block;
+	margin: 0 auto;
+	text-decoration: none;
+	color: #000000;
+
+	.mainPostBox {
+		display: block;
+		clear: both;
+		width: 100%;
+		margin: 2em 0.5em;
+
+		.mainTitle {
+			font-size: 1.5em;
+			font-weight: bold;
+		}
+
+		.mainImage {
+			float: left;
+			height: 5em;
+			width:5em;
+			margin-right: 0.5em;
+			border-radius: 100%;
+		}
+
+		.mainDescription {
+
+		}
+	}
+}
+
+.detailsPostBox {
+	margin: 0 3em;
+
+	.detailsTitle {
+		font-size: 2em;
+	}
+
+	.detailsDate {
+
+	}
+
+	.imageContainer {
+		margin: 1em 3em;
+
+		.detailsImage {
+			height: 100%;
+			width: 100%;
+		}
+	}
+
+	.detailsDescription {
+		font-size: 1.25em;
+	}
+
+	.detailsAuthor {
+		float: right;
+		font-weight: bold;
+		font-size: 1.25em;
+		margin: 1em;
+	}
+
+	.detailsCategory {
+
+	}
+}
