@@ -20,6 +20,7 @@ module.exports = React.createClass({
 		}
 		else {
 			leftLinks.push(this.createNavLink('add-post', 'Create Post'));
+			rightLinks.push(this.createNavLink(('user/details/'+Parse.User.current().id), 'User'));
 			rightLinks.push(<li><a href="#" onClick={this.logout}>Logout</a></li>);
 		}
 		return (

@@ -9,19 +9,22 @@ module.exports = React.createClass({
 		var errorElement = null;
 		if(this.state.error) {
 			errorElement = (
-				<p>{this.state.error}</p>
+				<div className="errorBox">
+					<p className="error">{this.state.error}</p>
+				</div>
 			);
 		}
 		return (
 			<div className="loginBox">
 				<h1 className="pageHeader">Login</h1>
 				<hr />
+				{errorElement}
 				<form className="form" onSubmit={this.onLogin}>
 					<input type="text" ref="username" placeholder="UserName" />
 					<br />
 					<input type="email" ref="email" placeholder="Email Address" />
 					<br />
-					<input type="test" ref="password" placeholder="Password" />
+					<input type="password" ref="password" placeholder="Password" />
 					<br />
 					<button>Login</button>
 				</form>

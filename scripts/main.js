@@ -12,6 +12,7 @@ var AddPostComponent = require('./components/AddPostComponent.js');
 var LoginComponent = require('./components/LoginComponent.js');
 var RegisterComponent = require('./components/RegisterComponent.js');
 var PostDetailsComponent = require('./components/PostDetailsComponent.js');
+var UserDetailsComponent = require('./components/UserDetailsComponent.js');
 
 var app = document.getElementById('app');
 
@@ -21,7 +22,8 @@ var Router = Backbone.Router.extend({
 		'add-post': 'addPost',
 		'login': 'login',
 		'register': 'register',
-		'post/details/:id': 'details'
+		'post/details/:id': 'postDetails',
+		'user/details/:id': 'userDetails'
 	},
 	main: function() {
 		ReactDOM.render(
@@ -50,9 +52,15 @@ var Router = Backbone.Router.extend({
 			app
 		);
 	},
-	details: function(id) {
+	postDetails: function(id) {
 		ReactDOM.render(
 			<PostDetailsComponent router={r} postId={id} />,
+			app
+		);
+	},
+	userDetails: function(id) {
+		ReactDOM.render(
+			<UserDetailsComponent router={r} postId={id} />,
 			app
 		);
 	}

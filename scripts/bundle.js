@@ -34908,7 +34908,22 @@ var moment = require('moment');
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+		return { error: null };
+	},
 	render: function render() {
+		var errorElement = null;
+		if (this.state.error) {
+			errorElement = React.createElement(
+				'div',
+				{ className: 'errorBox' },
+				React.createElement(
+					'p',
+					{ className: 'error' },
+					this.state.error
+				)
+			);
+		}
 		return React.createElement(
 			'div',
 			null,
@@ -34918,16 +34933,15 @@ module.exports = React.createClass({
 				'Add a Post'
 			),
 			React.createElement('hr', null),
+			errorElement,
 			React.createElement(
 				'form',
 				{ className: 'form', onSubmit: this.onAddPost },
 				React.createElement('input', { type: 'text', ref: 'title', placeholder: 'Title' }),
 				React.createElement('br', null),
-				React.createElement('input', { type: 'text', ref: 'image', placeholder: 'Image Link' }),
+				React.createElement('input', { type: 'url', ref: 'image', placeholder: 'Image Link' }),
 				React.createElement('br', null),
 				React.createElement('input', { type: 'text', ref: 'description', placeholder: 'Description' }),
-				React.createElement('br', null),
-				React.createElement('input', { type: 'text', ref: 'author', placeholder: 'Author' }),
 				React.createElement('br', null),
 				React.createElement('input', { type: 'text', ref: 'category', placeholder: 'Category' }),
 				React.createElement('br', null),
@@ -34945,7 +34959,7 @@ module.exports = React.createClass({
 			title: this.refs.title.value,
 			image: this.refs.image.value,
 			description: this.refs.description.value,
-			author: this.refs.author.value,
+			author: Parse.User.current().get('username'),
 			category: this.refs.category.value,
 			date: moment().format('MMMM Do YYYY, h:mm a')
 		});
@@ -34956,7 +34970,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/AddPostModel.js":169,"moment":5,"react":161,"react-dom":6}],163:[function(require,module,exports){
+},{"../models/AddPostModel.js":170,"moment":5,"react":161,"react-dom":6}],163:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34972,9 +34986,13 @@ module.exports = React.createClass({
 		var errorElement = null;
 		if (this.state.error) {
 			errorElement = React.createElement(
-				'p',
-				null,
-				this.state.error
+				'div',
+				{ className: 'errorBox' },
+				React.createElement(
+					'p',
+					{ className: 'error' },
+					this.state.error
+				)
 			);
 		}
 		return React.createElement(
@@ -34986,6 +35004,7 @@ module.exports = React.createClass({
 				'Login'
 			),
 			React.createElement('hr', null),
+			errorElement,
 			React.createElement(
 				'form',
 				{ className: 'form', onSubmit: this.onLogin },
@@ -34993,7 +35012,7 @@ module.exports = React.createClass({
 				React.createElement('br', null),
 				React.createElement('input', { type: 'email', ref: 'email', placeholder: 'Email Address' }),
 				React.createElement('br', null),
-				React.createElement('input', { type: 'test', ref: 'password', placeholder: 'Password' }),
+				React.createElement('input', { type: 'password', ref: 'password', placeholder: 'Password' }),
 				React.createElement('br', null),
 				React.createElement(
 					'button',
@@ -35089,7 +35108,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/AddPostModel.js":169,"react":161,"react-dom":6}],165:[function(require,module,exports){
+},{"../models/AddPostModel.js":170,"react":161,"react-dom":6}],165:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35117,6 +35136,7 @@ module.exports = React.createClass({
 			rightLinks.push(this.createNavLink('register', 'Register'));
 		} else {
 			leftLinks.push(this.createNavLink('add-post', 'Create Post'));
+			rightLinks.push(this.createNavLink('user/details/' + Parse.User.current().id, 'User'));
 			rightLinks.push(React.createElement(
 				'li',
 				null,
@@ -35260,7 +35280,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/AddPostModel.js":169,"react":161,"react-dom":6}],167:[function(require,module,exports){
+},{"../models/AddPostModel.js":170,"react":161,"react-dom":6}],167:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35276,9 +35296,13 @@ module.exports = React.createClass({
 		var errorElement = null;
 		if (this.state.error) {
 			errorElement = React.createElement(
-				'p',
-				null,
-				this.state.error
+				'div',
+				{ className: 'errorBox' },
+				React.createElement(
+					'p',
+					{ className: 'error' },
+					this.state.error
+				)
 			);
 		}
 		return React.createElement(
@@ -35298,7 +35322,7 @@ module.exports = React.createClass({
 				React.createElement('br', null),
 				React.createElement('input', { type: 'email', ref: 'email', placeholder: 'Email Address' }),
 				React.createElement('br', null),
-				React.createElement('input', { type: 'test', ref: 'password', placeholder: 'Password' }),
+				React.createElement('input', { type: 'password', ref: 'password', placeholder: 'Password' }),
 				React.createElement('br', null),
 				React.createElement(
 					'button',
@@ -35336,6 +35360,58 @@ module.exports = React.createClass({
 
 },{"react":161,"react-dom":6}],168:[function(require,module,exports){
 'use strict';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	// getInitialState: function() {
+	// 	return {
+	// 		post: null
+	// 	}
+	// },
+	// componentWillMount: function() {
+	// 	var query = new Parse.Query(PostModel);
+	// 	query
+	// 	.get(this.props.postId)
+	// 	.then(
+	// 		(post) => {
+	// 			this.setState({post: post});
+	// 		},
+	// 		(err) => {
+	// 			console.log(err);
+	// 		}
+	// 	);
+	// },
+	render: function render() {
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(
+				'div',
+				{ className: 'picBox' },
+				React.createElement('img', { className: 'profilePic', src: Parse.User.current().get('profilePicUrl') }),
+				React.createElement(
+					'div',
+					null,
+					'Username: ',
+					Parse.User.current().get('username')
+				)
+			),
+			React.createElement(
+				'div',
+				null,
+				'Email Address: ',
+				Parse.User.current().get('email')
+			)
+		);
+	}
+});
+
+},{"react":161,"react-dom":6}],169:[function(require,module,exports){
+'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
@@ -35349,6 +35425,7 @@ var AddPostComponent = require('./components/AddPostComponent.js');
 var LoginComponent = require('./components/LoginComponent.js');
 var RegisterComponent = require('./components/RegisterComponent.js');
 var PostDetailsComponent = require('./components/PostDetailsComponent.js');
+var UserDetailsComponent = require('./components/UserDetailsComponent.js');
 
 var app = document.getElementById('app');
 
@@ -35358,7 +35435,8 @@ var Router = Backbone.Router.extend({
 		'add-post': 'addPost',
 		'login': 'login',
 		'register': 'register',
-		'post/details/:id': 'details'
+		'post/details/:id': 'postDetails',
+		'user/details/:id': 'userDetails'
 	},
 	main: function main() {
 		ReactDOM.render(React.createElement(MainComponent, { router: r }), app);
@@ -35376,8 +35454,11 @@ var Router = Backbone.Router.extend({
 	register: function register() {
 		ReactDOM.render(React.createElement(RegisterComponent, { router: r }), app);
 	},
-	details: function details(id) {
+	postDetails: function postDetails(id) {
 		ReactDOM.render(React.createElement(PostDetailsComponent, { router: r, postId: id }), app);
+	},
+	userDetails: function userDetails(id) {
+		ReactDOM.render(React.createElement(UserDetailsComponent, { router: r, postId: id }), app);
 	}
 });
 
@@ -35386,14 +35467,14 @@ Backbone.history.start();
 
 ReactDOM.render(React.createElement(NavigationComponent, { router: r }), document.getElementById('nav'));
 
-},{"./components/AddPostComponent.js":162,"./components/LoginComponent.js":163,"./components/MainComponent.js":164,"./components/NavigationComponent.js":165,"./components/PostDetailsComponent.js":166,"./components/RegisterComponent.js":167,"backbone":1,"jquery":4,"react":161,"react-dom":6}],169:[function(require,module,exports){
+},{"./components/AddPostComponent.js":162,"./components/LoginComponent.js":163,"./components/MainComponent.js":164,"./components/NavigationComponent.js":165,"./components/PostDetailsComponent.js":166,"./components/RegisterComponent.js":167,"./components/UserDetailsComponent.js":168,"backbone":1,"jquery":4,"react":161,"react-dom":6}],170:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
 	className: 'Post'
 });
 
-},{}]},{},[168])
+},{}]},{},[169])
 
 
 //# sourceMappingURL=bundle.js.map
